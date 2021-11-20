@@ -1,4 +1,4 @@
-package com.jayatest.MonetaryConverter
+package com.jayatest.monetaryconverter
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

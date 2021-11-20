@@ -1,0 +1,7 @@
+
+
+
+
+### READ
+GET http://localhost:8080/monetaryconverter
+Content-Type: application/json

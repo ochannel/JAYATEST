@@ -1,4 +1,4 @@
-package com.jayatest.MonetaryConverter
+package com.jayatest.monetaryconverter
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
