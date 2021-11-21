@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*
 class MonetaryConverterController(val monetaryConverterService: MonetaryConverterService) {
 
     @GetMapping
-    fun list():String{
-        return "Hello Koplin!"
-    }
+    fun listAll()=ResponseEntity.ok().body(monetaryConverterService.listAll())
 
     @PostMapping
     fun create(@RequestBody monetaryConverter:MonetaryConverter) = ResponseEntity.status(HttpStatus.CREATED).body(monetaryConverterService.create(monetaryConverter))

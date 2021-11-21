@@ -1,5 +1,5 @@
 package com.jayatest.monetaryconverter.model
 
-enum class Moeda {
+enum class Currency {
     BRL, USD, EUR, JPY
 }

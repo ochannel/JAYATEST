@@ -1,19 +1,20 @@
 package com.jayatest.monetaryconverter.model
 
-import org.springframework.data.mongodb.core.mapping.Document
+import org.springframework.data.annotation.Id
 import java.math.BigDecimal
 import java.time.LocalDateTime
 
 
 //@Document
 data class MonetaryConverter(
+    @Id
     val transactionId:String?=null,
     val idUsurious: Long,
-    val origenCurrency:Moeda,
-    val origenCurrencyValue: BigDecimal,
-    val destinationCurrency :Moeda,
-    val destinationCurrencyValue :BigDecimal?=null,
-    val rate: BigDecimal?=null,
-    val currentDate: LocalDateTime?=null
+    val origenCurrency:Currency,
+    var origenCurrencyValue: BigDecimal,
+    val destinationCurrency :Currency,
+    var destinationCurrencyValue :BigDecimal?=null,
+    var rate: BigDecimal?=null,
+    var currentDate: LocalDateTime?=null
     ) {
 }
