@@ -1,5 +1,6 @@
 package com.jayatest.monetaryconverter.model
 
+import com.jayatest.monetaryconverterapi.model.MonetaryConverterDTO
 import org.springframework.data.annotation.Id
 import java.math.BigDecimal
 import java.time.LocalDateTime
@@ -8,13 +9,31 @@ import java.time.LocalDateTime
 //@Document
 data class MonetaryConverter(
     @Id
-    val transactionId:String?=null,
-    val idUsurious: Long,
-    val origenCurrency:Currency,
-    var origenCurrencyValue: BigDecimal,
-    val destinationCurrency :Currency,
+    var transactionId:String?=null,
+    var idUsurious: Long?=null,
+    var origenCurrency:Currency?=null,
+    var origenCurrencyValue: BigDecimal?=null,
+    var destinationCurrency :Currency?=null,
     var destinationCurrencyValue :BigDecimal?=null,
     var rate: BigDecimal?=null,
     var currentDate: LocalDateTime?=null
     ) {
+
+
+    public fun fillMonetaryConverter(monetaryConverterDTO: MonetaryConverterDTO):MonetaryConverter{
+        this.transactionId=monetaryConverterDTO.transactionId;
+        this.idUsurious = monetaryConverterDTO.idUsurious.toLong();
+        this.origenCurrency= Currency.valueOf(monetaryConverterDTO.origenCurrency);
+        this.origenCurrencyValue=BigDecimal(monetaryConverterDTO.origenCurrencyValue);
+        this.destinationCurrency=Currency.valueOf(monetaryConverterDTO.destinationCurrency);
+        if(monetaryConverterDTO.destinationCurrencyValue!=null)
+        this.destinationCurrencyValue=BigDecimal(monetaryConverterDTO.destinationCurrencyValue)
+        this.transactionId=monetaryConverterDTO.transactionId;
+        return this;
+    }
+
+
+
+
+
 }

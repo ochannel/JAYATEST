@@ -1,24 +1,18 @@
-POST http://localhost:8080/monetaryconverter
+POST http://localhost:8080/v1/monetaryconverter
 Content-Type: application/json
 
 { "idUsurious":1,
-  "origenCurrency":"BRL",
-  "origenCurrencyValue": 12.66,
+  "origenCurrency":"EUR",
+  "origenCurrencyValue": 1.00,
   "destinationCurrency" :"USD"
 }
 
-
-
-
-
-###
-
-
-
+### READ
+GET http://localhost:8080/v1/monetaryconverter
 
 ### READ
-GET http://localhost:8080/monetaryconverter
-Content-Type: application/json
+GET http://localhost:8080/v1/monetaryconverter/2
+
 
 
 

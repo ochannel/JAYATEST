@@ -16,6 +16,11 @@
 	<properties>
 		<java.version>11</java.version>
 		<kotlin.version>1.6.0</kotlin.version>
+		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+		<io.springfox>1.6.0</io.springfox>
+		<openapi-generator-maven-plugin.version>4.2.2</openapi-generator-maven-plugin.version>
+		<jackson.version>2.9.10</jackson.version>
+		<jackson-databind-nullable.version>0.2.0</jackson-databind-nullable.version>
 	</properties>
 	<dependencies>
 			<dependency>
@@ -55,6 +60,82 @@
             <artifactId>de.flapdoodle.embed.mongo</artifactId>
             <scope>test</scope>
         </dependency>
+		<!--
+		swagger2
+		-->
+
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-swagger2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${io.springfox}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-models</artifactId>
+			<version>${io.springfox}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-bean-validators</artifactId>
+			<version>${springfox-swagger2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-swagger2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hibernate5</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hppc</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-afterburner</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>${jackson-databind-nullable.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>2.3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api-kotlin</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -84,7 +165,43 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.openapitools</groupId>
+					<artifactId>openapi-generator-maven-plugin</artifactId>
+					<version>${openapi-generator-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>generate</goal>
+							</goals>
+							<configuration>
+								<inputSpec>${project.basedir}/src/main/resources/swagger/api.yml</inputSpec>
+								<generatorName>spring</generatorName>
+								<apiPackage>com.jayatest.monetaryconverter.api</apiPackage>
+								<modelPackage>com.jayatest.monetaryconverterapi.model</modelPackage>
+								<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+								<skipValidateSpec>false</skipValidateSpec>
+								<configOptions>
+									<interfaceOnly>true</interfaceOnly>
+									<generateSupportingFiles>false</generateSupportingFiles>
+									<sourceFolder>gen</sourceFolder>
+								</configOptions>
+								<additionalProperties>
+									<additionalProperty>errorOnUnknownEnum=true</additionalProperty>
+								</additionalProperties>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 </project>

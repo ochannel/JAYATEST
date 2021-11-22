@@ -1,11 +1,18 @@
 package com.jayatest.monetaryconverter.service
 
+import com.jayatest.monetaryconverter.exception.NotFoundException
 import com.jayatest.monetaryconverter.model.ExchangeRatesApiResponse
 import com.jayatest.monetaryconverter.model.MonetaryConverter
 import com.jayatest.monetaryconverter.repository.MonetaryConverterRepository
+import com.jayatest.monetaryconverterapi.model.MonetaryConverterDTO
+import org.modelmapper.ModelMapper
+
 import org.springframework.stereotype.Service
+
 import java.math.RoundingMode
 import java.time.LocalDateTime
+import org.modelmapper.TypeToken;
+
 
 
 @Service
@@ -14,10 +21,12 @@ class MonetaryConverterService(
     val monetaryConverterRepository: MonetaryConverterRepository
 ) {
 
-    fun create(monetaryConverter: MonetaryConverter): MonetaryConverter {
+    fun create(monetaryConverterDTO: MonetaryConverterDTO): MonetaryConverterDTO {
+        val turnsTypeOutPut = object : TypeToken<MonetaryConverterDTO>() {}.type
         val exchangeRatesApiResponse = exchangeRatesApiService.getRates();
+        val monetaryConverter = MonetaryConverter().fillMonetaryConverter(monetaryConverterDTO);
         converterCurrency(monetaryConverter, exchangeRatesApiResponse)
-        return monetaryConverterRepository.save(monetaryConverter)
+        return ModelMapper().map(monetaryConverterRepository.save(monetaryConverter), turnsTypeOutPut)
     }
 
     private fun converterCurrency(
@@ -31,11 +40,28 @@ class MonetaryConverterService(
                 exchangeRatesApiResponse.rates?.get(monetaryConverter.destinationCurrency.toString())
 
             monetaryConverter.destinationCurrencyValue =
-                monetaryConverter.origenCurrencyValue.divide(rateCurrencyInput?.toBigDecimal(), RoundingMode.HALF_UP)
-                    .multiply(rateCurrencyOutput?.toBigDecimal())
-            monetaryConverter.rate=rateCurrencyOutput?.toBigDecimal();
+                monetaryConverter.origenCurrencyValue?.divide(rateCurrencyInput?.toBigDecimal(), RoundingMode.HALF_UP)
+                    ?.multiply(rateCurrencyOutput?.toBigDecimal())
+            monetaryConverter.rate = rateCurrencyOutput?.toBigDecimal();
         };
     }
 
-    fun listAll() = monetaryConverterRepository.findAll();
+    fun listAll(): List<MonetaryConverterDTO> {
+        val turnsType = object : TypeToken<List<MonetaryConverterDTO>>() {}.type
+        return ModelMapper().map(monetaryConverterRepository.findAll(), turnsType);
+
+    }
+
+    fun findforidUsurious(idUsurious:Int?): List<MonetaryConverterDTO>{
+        val turnsType = object : TypeToken<List<MonetaryConverterDTO>>() {}.type
+
+        val listMonetaryConverter =monetaryConverterRepository.findforidUsurious(idUsurious)
+        if(listMonetaryConverter.isEmpty()){
+            throw NotFoundException("Não foi encontrado MonetaryConverter paro o usuário. ");
+        }
+        return ModelMapper().map(monetaryConverterRepository.findforidUsurious(idUsurious), turnsType);
+    }
+
+
+
 }
