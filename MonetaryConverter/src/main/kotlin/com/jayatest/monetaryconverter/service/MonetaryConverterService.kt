@@ -12,16 +12,18 @@ import org.springframework.stereotype.Service
 import java.math.RoundingMode
 import java.time.LocalDateTime
 import org.modelmapper.TypeToken;
-
+import org.springframework.validation.Validator
 
 
 @Service
 class MonetaryConverterService(
     val exchangeRatesApiService: ExchangeRatesApiService,
-    val monetaryConverterRepository: MonetaryConverterRepository
+    val monetaryConverterRepository: MonetaryConverterRepository,
+     validator: Validator
 ) {
 
     fun create(monetaryConverterDTO: MonetaryConverterDTO): MonetaryConverterDTO {
+
         val turnsTypeOutPut = object : TypeToken<MonetaryConverterDTO>() {}.type
         val exchangeRatesApiResponse = exchangeRatesApiService.getRates();
         val monetaryConverter = MonetaryConverter().fillMonetaryConverter(monetaryConverterDTO);
