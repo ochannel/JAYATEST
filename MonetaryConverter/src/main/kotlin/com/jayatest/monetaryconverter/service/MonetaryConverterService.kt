@@ -12,29 +12,28 @@ import org.springframework.stereotype.Service
 import java.math.RoundingMode
 import java.time.LocalDateTime
 import org.modelmapper.TypeToken;
-import org.springframework.validation.Validator
 
 
 @Service
 class MonetaryConverterService(
     val exchangeRatesApiService: ExchangeRatesApiService,
-    val monetaryConverterRepository: MonetaryConverterRepository,
-     validator: Validator
+    val monetaryConverterRepository: MonetaryConverterRepository
 ) {
 
     fun create(monetaryConverterDTO: MonetaryConverterDTO): MonetaryConverterDTO {
 
         val turnsTypeOutPut = object : TypeToken<MonetaryConverterDTO>() {}.type
         val exchangeRatesApiResponse = exchangeRatesApiService.getRates();
-        val monetaryConverter = MonetaryConverter().fillMonetaryConverter(monetaryConverterDTO);
-        converterCurrency(monetaryConverter, exchangeRatesApiResponse)
+        var monetaryConverter = converterCurrency(monetaryConverterDTO, exchangeRatesApiResponse)
         return ModelMapper().map(monetaryConverterRepository.save(monetaryConverter), turnsTypeOutPut)
     }
 
     private fun converterCurrency(
-        monetaryConverter: MonetaryConverter,
+        monetaryConverterDTO: MonetaryConverterDTO,
         exchangeRatesApiResponse: ExchangeRatesApiResponse?
-    ) {
+    ):MonetaryConverter {
+        val monetaryConverter = MonetaryConverter().fillMonetaryConverter(monetaryConverterDTO);
+
         monetaryConverter.currentDate = LocalDateTime.now();
         if (exchangeRatesApiResponse != null) {
             val rateCurrencyInput = exchangeRatesApiResponse.rates?.get(monetaryConverter.origenCurrency.toString())
@@ -46,6 +45,8 @@ class MonetaryConverterService(
                     ?.multiply(rateCurrencyOutput?.toBigDecimal())
             monetaryConverter.rate = rateCurrencyOutput?.toBigDecimal();
         };
+        return monetaryConverter;
+
     }
 
     fun listAll(): List<MonetaryConverterDTO> {

@@ -1,3 +1,7 @@
+GET http://api.exchangeratesapi.io/v1/latest?access_key=f121cf6f67f62073bb995cd635e51b2d&base=EUR&symbols=BRL,USD,EUR,JPY&format=1
+Accept: application/json
+
+###
 POST http://localhost:8080/v1/monetaryconverter
 Content-Type: application/json
 
@@ -7,11 +11,11 @@ Content-Type: application/json
   "destinationCurrency" :"USD"
 }
 
-### READ
+### ALL
 GET http://localhost:8080/v1/monetaryconverter
 
-### READ
-GET http://localhost:8080/v1/monetaryconverter/2
+### FOR USER
+GET http://localhost:8080/v1/monetaryconverter/3
 
 
 
