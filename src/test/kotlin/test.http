@@ -1,3 +1,12 @@
+POST https://monetaryconverter.herokuapp.com/v1/monetaryconverter
+Content-Type: application/json
+
+{"idUsurious":1,
+  "origenCurrency":"EUR",
+  "origenCurrencyValue": 1.00,
+  "destinationCurrency" :"USD"}
+
+###
 GET http://api.exchangeratesapi.io/v1/latest?access_key=f121cf6f67f62073bb995cd635e51b2d&base=EUR&symbols=BRL,USD,EUR,JPY&format=1
 Accept: application/json
 
