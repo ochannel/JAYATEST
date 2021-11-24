@@ -1,0 +1,148 @@
+openapi: 3.0.1
+info:
+  title: Api para de conversao Monetária
+  version: 1.0.0
+
+
+
+paths:
+  '/v1/monetaryconverter':
+    get:
+      operationId: listAll
+      summary: Listar todas as transações
+      responses:
+        '200':
+          description: Sucesso ao listar todas as transações.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MonetaryConverterDTO'
+        '400':
+          description: "Bad Request"
+        '500':
+          description: "Internal Server Error"
+        '404':
+          description: "Not Found"
+
+
+
+    post:
+      operationId: create
+      summary: Faz a conversão de moeda.
+      requestBody:
+        description: Realizar a conversão de moeda.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonetaryConverterDTO'
+      responses:
+        '201':
+          description: Sucesso ao listar todas as transações.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonetaryConverterDTO'
+        '400':
+          description: "Bad Request"
+        '500':
+          description: "Internal Server Error"
+        '404':
+          description: "Not Found"
+
+  '/v1/monetaryconverter/{idUsurious}':
+    get:
+      operationId: findforidUsurious
+      summary: Recupera a lista de monetaryconverter por usuário.
+      parameters:
+        - in: path
+          name: idUsurious
+          schema:
+            type: integer
+          required: true
+          description: Identificador do Usuário.
+      responses:
+        '200':
+          description: Sucesso ao listar todas as transações.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MonetaryConverterDTO'
+        '400':
+          description: "Bad Request"
+        '500':
+          description: "Internal Server Error"
+        '404':
+          description: "Not Found"
+
+
+
+components:
+  responses:
+    Ok:
+      description: Sucesso ao listar todas as transações.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MonetaryConverterDTO'
+
+
+
+  schemas:
+    MonetaryConverterDTO:
+      type: object
+      description: Entrada de dados
+      properties:
+        transactionId:
+          type: string
+          description: Id transacional
+        idUsurious:
+          type: "string"
+          description: Código do Usuário
+          example: "9999999999"
+          pattern: '[0-9]{1,10}'
+          x-pattern-message: "Deve conter apenas numeros e deve de 1 a 10 digitos."
+        origenCurrency:
+          type: string
+          description: "Moeda de origem"
+          minLength: 1
+          maxLength: 3
+          example: "BRL"
+          pattern: "^BRL||USD||EUR||JPY$"
+          x-pattern-message: "Campo origenCurrency deve ser BRL,USD,EUR ou JPY."
+        origenCurrencyValue:
+          type: "number"
+          format: "double"
+          description: "Campo valor para ser a ser convertido."
+          example: "7.00"
+          x-pattern-message: "Deve conter apenas números."
+        destinationCurrency:
+          type: string
+          description: "Moeda de destino"
+          example: "BRL"
+          pattern: "^[BRL||USD||EUR||JPY]{1,3}$"
+          x-pattern-message: "Campo destinationCurrency deve ser BRL,USD,EUR ou JPY."
+        rate:
+          type: "number"
+          format: "double"
+          description: "taxa utilizada na conversão."
+        currentDate:
+          type: string
+          description: "Data e hora da conversão."
+        destinationCurrencyValue :
+          type: "number"
+          format: "double"
+          description: "Valo já preenchido na moeda de destino."
+          example: "7.00"
+          x-pattern-message: "Deve conter apenas números."
+
+      required:
+        - idUsurious
+        - origenCurrency
+        - origenCurrencyValue
+        - destinationCurrency
+

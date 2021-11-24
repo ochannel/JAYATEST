@@ -1,0 +1,23 @@
+GET http://api.exchangeratesapi.io/v1/latest?access_key=f121cf6f67f62073bb995cd635e51b2d&base=EUR&symbols=BRL,USD,EUR,JPY&format=1
+Accept: application/json
+
+###
+POST http://localhost:8080/v1/monetaryconverter
+Content-Type: application/json
+
+{ "idUsurious":1,
+  "origenCurrency":"EUR",
+  "origenCurrencyValue": 1.00,
+  "destinationCurrency" :"USD"
+}
+
+### ALL
+GET http://localhost:8080/v1/monetaryconverter
+
+### FOR USER
+GET http://localhost:8080/v1/monetaryconverter/3
+
+
+
+
+
