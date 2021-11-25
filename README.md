@@ -21,10 +21,10 @@ Necessário a IDE Intellij e o GIT para baixar o projeto desse repositório, nã
 Definicão de escolha das tecnologias:
 
 Kotlin-> na entrevista foi falado que seria para trabalhar com kotlin e também eu tinha vontade de conhecer.
-Spring Boot-> porque tenho um bom conhecimento.
+Spring Boot-> porque tenho um bom conhecimento e atende muito bem para criar serviços rest.
 API Restfull -> boas práticas que sempre utilizo na criação de serviços rest.
-OPEN API(SWAGGER)-> escolhi o open api design first onde gero primeiro a documentação depois desenvolvo o serviço, assim o serviço fica sempre atulizado com a documentação 
-e também facilita que for utilizar porque vai receber a documentação antes do serviço estar pronto.
+OPEN API(SWAGGER)-> escolhi o open api design first onde gero primeiro a documentação depois desenvolvo o serviço, assim o serviço sempre fica atualizado com a documentação 
+e também facilita quem for utilizar porque vai receber a documentação antes do serviço estar pronto.
 JUNIT-> muito bom para realizar testes.
 MOKITO->muito bom para realizar mock de banco de dados e metodos.
 MONGODB->ótimo banco para ser utilizado com microserviços.
