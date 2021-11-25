@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "e76ef57d-4b35-49ec-bd62-faf1e16b323b",
+		"name": "monetaryconverter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/v1/monetaryconverter",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"idUsurious\":1,\r\n  \"origenCurrency\":\"EUR\",\r\n  \"origenCurrencyValue\": 7,\r\n  \"destinationCurrency\" :\"USD\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/monetaryconverter",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"monetaryconverter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v1/monetaryconverter/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://monetaryconverter.herokuapp.com/v1/monetaryconverter/1",
+					"protocol": "https",
+					"host": [
+						"monetaryconverter",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"v1",
+						"monetaryconverter",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/v1/monetaryconverter/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://monetaryconverter.herokuapp.com/v1/monetaryconverter",
+					"protocol": "https",
+					"host": [
+						"monetaryconverter",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"v1",
+						"monetaryconverter"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
