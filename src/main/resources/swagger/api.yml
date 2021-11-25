@@ -3,6 +3,9 @@ info:
   title: Api para de conversao Monetária
   version: 1.0.0
 
+servers:
+  - url: https://monetaryconverter.herokuapp.com
+
 
 
 paths:
