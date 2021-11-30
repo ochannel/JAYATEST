@@ -1,16 +1,22 @@
 openapi: 3.0.1
 info:
-  title: Api para de conversao Monetária
+  title: Api para de conversão Monetária
   version: 1.0.0
 
 servers:
   - url: https://monetaryconverter.herokuapp.com
+
+tags:
+  - name: monetaryconverter
+    description: Operations about monetaryconverter
 
 
 
 paths:
   '/v1/monetaryconverter':
     get:
+      tags:
+        - monetaryconverter
       operationId: listAll
       summary: Listar todas as transações
       responses:
@@ -103,6 +109,7 @@ components:
         transactionId:
           type: string
           description: Id transacional
+          example: "619ef27d01665c456a857bb3"
         idUsurious:
           type: "string"
           description: Código do Usuário
@@ -133,9 +140,11 @@ components:
           type: "number"
           format: "double"
           description: "taxa utilizada na conversão."
+          example:  1.121126
         currentDate:
           type: string
           description: "Data e hora da conversão."
+          example: "2021-11-25T02:27:38.133"
         destinationCurrencyValue :
           type: "number"
           format: "double"
