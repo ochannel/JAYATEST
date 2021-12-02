@@ -1,6 +1,7 @@
 package com.jayatest.monetaryconverter.model
 
 import com.jayatest.monetaryconverterapi.model.MonetaryConverterDTO
+import com.jayatest.monetaryconverterapi.model.MonetaryConverterRequestDTO
 import org.springframework.data.annotation.Id
 import java.math.BigDecimal
 import java.time.LocalDateTime
@@ -20,16 +21,12 @@ data class MonetaryConverter(
     ) {
 
 
-    public fun fillMonetaryConverter(monetaryConverterDTO: MonetaryConverterDTO):MonetaryConverter{
-        this.transactionId=monetaryConverterDTO.transactionId;
+    public fun fillMonetaryConverter(monetaryConverterDTO: MonetaryConverterRequestDTO):MonetaryConverter{
         this.idUser = monetaryConverterDTO.idUser.toLong();
         this.origenCurrency= Currency.valueOf(monetaryConverterDTO.origenCurrency);
         this.origenCurrencyValue=BigDecimal(monetaryConverterDTO.origenCurrencyValue);
         this.destinationCurrency=Currency.valueOf(monetaryConverterDTO.destinationCurrency);
-        if(monetaryConverterDTO.destinationCurrencyValue!=null)
-        this.destinationCurrencyValue=BigDecimal(monetaryConverterDTO.destinationCurrencyValue)
-        this.transactionId=monetaryConverterDTO.transactionId;
-        return this;
+         return this;
     }
 
 

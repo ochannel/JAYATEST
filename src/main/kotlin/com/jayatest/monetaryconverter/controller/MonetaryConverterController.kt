@@ -5,6 +5,7 @@ import com.jayatest.monetaryconverter.model.MonetaryConverter
 import com.jayatest.monetaryconverter.repository.MonetaryConverterRepository
 import com.jayatest.monetaryconverter.service.MonetaryConverterService
 import com.jayatest.monetaryconverterapi.model.MonetaryConverterDTO
+import com.jayatest.monetaryconverterapi.model.MonetaryConverterRequestDTO
 import io.swagger.annotations.ApiParam
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -16,9 +17,11 @@ class MonetaryConverterController(val monetaryConverterService: MonetaryConverte
 
     @CrossOrigin
     override fun listAll() = ResponseEntity.ok().body(monetaryConverterService.listAll());
+
     @CrossOrigin
-    override fun create(monetaryConverterDTO: MonetaryConverterDTO) =
+    override fun create(monetaryConverterDTO: MonetaryConverterRequestDTO) =
         ResponseEntity.status(HttpStatus.CREATED).body(monetaryConverterService.create(monetaryConverterDTO))
+
     @CrossOrigin
     override fun findforidUsers(idUser: String?)
             : ResponseEntity<List<MonetaryConverterDTO>>? =

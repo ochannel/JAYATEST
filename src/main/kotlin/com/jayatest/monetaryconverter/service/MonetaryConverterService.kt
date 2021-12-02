@@ -6,6 +6,7 @@ import com.jayatest.monetaryconverter.model.MonetaryConverter
 import com.jayatest.monetaryconverter.repository.MonetaryConverterRepository
 import com.jayatest.monetaryconverter.validation.IntegerValidation
 import com.jayatest.monetaryconverterapi.model.MonetaryConverterDTO
+import com.jayatest.monetaryconverterapi.model.MonetaryConverterRequestDTO
 import org.modelmapper.ModelMapper
 
 import org.springframework.stereotype.Service
@@ -21,19 +22,19 @@ class MonetaryConverterService(
     val monetaryConverterRepository: MonetaryConverterRepository
 ) {
 
-    fun create(monetaryConverterDTO: MonetaryConverterDTO): MonetaryConverterDTO {
+    fun create(monetaryConverterRequestDTO: MonetaryConverterRequestDTO): MonetaryConverterDTO {
 
         val turnsTypeOutPut = object : TypeToken<MonetaryConverterDTO>() {}.type
         val exchangeRatesApiResponse = exchangeRatesApiService.getRates();
-        var monetaryConverter = converterCurrency(monetaryConverterDTO, exchangeRatesApiResponse)
+        var monetaryConverter = converterCurrency(monetaryConverterRequestDTO, exchangeRatesApiResponse)
         return ModelMapper().map(monetaryConverterRepository.save(monetaryConverter), turnsTypeOutPut)
     }
 
     private fun converterCurrency(
-        monetaryConverterDTO: MonetaryConverterDTO,
+        monetaryConverterRequestDTO: MonetaryConverterRequestDTO,
         exchangeRatesApiResponse: ExchangeRatesApiResponse?
     ):MonetaryConverter {
-        val monetaryConverter = MonetaryConverter().fillMonetaryConverter(monetaryConverterDTO);
+        val monetaryConverter = MonetaryConverter().fillMonetaryConverter(monetaryConverterRequestDTO);
 
         monetaryConverter.currentDate = LocalDateTime.now();
         if (exchangeRatesApiResponse != null) {

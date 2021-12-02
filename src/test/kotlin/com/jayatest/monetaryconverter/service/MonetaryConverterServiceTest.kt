@@ -7,6 +7,7 @@ import com.jayatest.monetaryconverter.model.ExchangeRatesApiResponse
 import com.jayatest.monetaryconverter.model.MonetaryConverter
 import com.jayatest.monetaryconverter.repository.MonetaryConverterRepository
 import com.jayatest.monetaryconverterapi.model.MonetaryConverterDTO
+import com.jayatest.monetaryconverterapi.model.MonetaryConverterRequestDTO
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -29,7 +30,7 @@ internal class MonetaryConverterServiceTest {
     fun createSuccess() {
         val monetaryConverter = MonetaryConverter();
         fillMonetaryConverter(monetaryConverter)
-        var monetaryConverterDTO = MonetaryConverterDTO();
+        var monetaryConverterDTO = MonetaryConverterRequestDTO();
         fillMonetaryConverterDTO(monetaryConverterDTO)
         var exchangeRatesApiResponse = ExchangeRatesApiResponse()
         fillExchangeRatesApiResponse(exchangeRatesApiResponse)
@@ -44,7 +45,7 @@ internal class MonetaryConverterServiceTest {
         val expectedMessage = "I/O error on GET request"
         val monetaryConverter = MonetaryConverter();
         fillMonetaryConverter(monetaryConverter)
-        var monetaryConverterDTO = MonetaryConverterDTO();
+        var monetaryConverterDTO = MonetaryConverterRequestDTO();
         fillMonetaryConverterDTO(monetaryConverterDTO)
         var exchangeRatesApiResponse = ExchangeRatesApiResponse()
         fillExchangeRatesApiResponse(exchangeRatesApiResponse)
@@ -113,7 +114,7 @@ internal class MonetaryConverterServiceTest {
         monetaryConverter.origenCurrency = Currency.EUR
     }
 
-    private fun fillMonetaryConverterDTO(monetaryConverterDTO: MonetaryConverterDTO) {
+    private fun fillMonetaryConverterDTO(monetaryConverterDTO: MonetaryConverterRequestDTO) {
         monetaryConverterDTO.idUser = "1"
         monetaryConverterDTO.origenCurrency = "EUR"
         monetaryConverterDTO.origenCurrencyValue = 1.00;
