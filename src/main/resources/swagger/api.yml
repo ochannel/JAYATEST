@@ -61,13 +61,13 @@ paths:
         '404':
           description: "Not Found"
 
-  '/v1/monetaryconverter/{idUsurious}':
+  '/v1/monetaryconverter/{idUser}':
     get:
-      operationId: findforidUsurious
+      operationId: findforidUsers
       summary: Recupera a lista de monetaryconverter por usuário.
       parameters:
         - in: path
-          name: idUsurious
+          name: idUser
           schema:
             type: string
           required: true
@@ -111,7 +111,7 @@ components:
           type: string
           description: Id transacional
           example: "619ef27d01665c456a857bb3"
-        idUsurious:
+        idUser:
           type: "string"
           description: Código do Usuário
           example: "999999999"
@@ -154,7 +154,7 @@ components:
           x-pattern-message: "Deve conter apenas números."
 
       required:
-        - idUsurious
+        - idUser
         - origenCurrency
         - origenCurrencyValue
         - destinationCurrency

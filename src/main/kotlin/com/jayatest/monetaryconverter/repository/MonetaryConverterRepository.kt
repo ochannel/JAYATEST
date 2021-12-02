@@ -12,7 +12,7 @@ interface MonetaryConverterRepository : MongoRepository<MonetaryConverter,String
 
 
 
-    @Query("{ 'idUsurious' : ?0 }")
-    fun findforidUsurious(idUsurious:Int?):List<MonetaryConverter>
+    @Query("{ 'idUser' : ?0 }")
+    fun findforidUsers(idUser:Int?):List<MonetaryConverter>
 
 }

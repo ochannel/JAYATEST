@@ -10,7 +10,7 @@ import java.time.LocalDateTime
 data class MonetaryConverter(
     @Id
     var transactionId:String?=null,
-    var idUsurious: Long?=null,
+    var idUser: Long?=null,
     var origenCurrency:Currency?=null,
     var origenCurrencyValue: BigDecimal?=null,
     var destinationCurrency :Currency?=null,
@@ -22,7 +22,7 @@ data class MonetaryConverter(
 
     public fun fillMonetaryConverter(monetaryConverterDTO: MonetaryConverterDTO):MonetaryConverter{
         this.transactionId=monetaryConverterDTO.transactionId;
-        this.idUsurious = monetaryConverterDTO.idUsurious.toLong();
+        this.idUser = monetaryConverterDTO.idUser.toLong();
         this.origenCurrency= Currency.valueOf(monetaryConverterDTO.origenCurrency);
         this.origenCurrencyValue=BigDecimal(monetaryConverterDTO.origenCurrencyValue);
         this.destinationCurrency=Currency.valueOf(monetaryConverterDTO.destinationCurrency);

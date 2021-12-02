@@ -56,14 +56,14 @@ class MonetaryConverterService(
 
     }
 
-    fun findforidUsurious(idUsurious:String?): List<MonetaryConverterDTO>{
+    fun findforidUsers(idUser:String?): List<MonetaryConverterDTO>{
 
 
-        IntegerValidation.validate(idUsurious,"idUsurious")
+        IntegerValidation.validate(idUser,"idUser")
 
         val turnsType = object : TypeToken<List<MonetaryConverterDTO>>() {}.type
 
-        val listMonetaryConverter = monetaryConverterRepository.findforidUsurious(Integer.valueOf(idUsurious))
+        val listMonetaryConverter = monetaryConverterRepository.findforidUsers(Integer.valueOf(idUser))
         if(listMonetaryConverter.isEmpty()){
             throw NotFoundException("Não foi encontrado MonetaryConverter para o usuário. ");
         }

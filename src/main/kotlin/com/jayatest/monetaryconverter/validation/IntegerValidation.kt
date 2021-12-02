@@ -10,7 +10,7 @@ class IntegerValidation {
             try {
                 Integer.parseInt(number);
             } catch (e: Exception) {
-               throw  ValidationException("O campo ${name} não é um número entre 0 e 999999999.")
+               throw  ValidationException("O campo ${name} deve ser um número entre 0 e 999999999.")
             }
 
         }

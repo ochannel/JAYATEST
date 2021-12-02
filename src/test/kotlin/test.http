@@ -1,7 +1,7 @@
 POST https://monetaryconverter.herokuapp.com/v1/monetaryconverter
 Content-Type: application/json
 
-{"idUsurious":1,
+{"idUser":1,
   "origenCurrency":"EUR",
   "origenCurrencyValue": 1.00,
   "destinationCurrency" :"USD"}
@@ -14,7 +14,7 @@ Accept: application/json
 POST http://localhost:8080/v1/monetaryconverter
 Content-Type: application/json
 
-{ "idUsurious":1,
+{ "idUser":1,
   "origenCurrency":"EUR",
   "origenCurrencyValue": 1.00,
   "destinationCurrency" :"USD"
