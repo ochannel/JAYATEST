@@ -44,7 +44,7 @@ class ErrorHandlingControllerAdvice : Logging {
 	@ExceptionHandler(ValidationException::class)
 	fun handleErrorValidationException(req: HttpServletRequest?, ex: Exception): ResponseEntity<ApiError> {
 		logger.info(String.format("excecao capturada: %s - %s", ex.javaClass, ex.message))
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiError(ex.message))
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ApiError(ex.message))
 	}
 
 	@ExceptionHandler(ExchangeRatesApiException::class)

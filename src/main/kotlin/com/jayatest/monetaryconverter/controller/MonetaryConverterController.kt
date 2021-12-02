@@ -20,7 +20,7 @@ class MonetaryConverterController(val monetaryConverterService: MonetaryConverte
     override fun create(monetaryConverterDTO: MonetaryConverterDTO) =
         ResponseEntity.status(HttpStatus.CREATED).body(monetaryConverterService.create(monetaryConverterDTO))
     @CrossOrigin
-    override fun findforidUsurious(idUsurious: Int?)
+    override fun findforidUsurious(idUsurious: String?)
             : ResponseEntity<List<MonetaryConverterDTO>>? =
         ResponseEntity.ok().body(monetaryConverterService.findforidUsurious(idUsurious));
 

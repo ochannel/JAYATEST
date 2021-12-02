@@ -82,7 +82,7 @@ internal class MonetaryConverterServiceTest {
         monetaryConverter2.origenCurrencyValue= BigDecimal(5.00);
         Mockito.`when`(mockMonetaryConverterRepository.findforidUsurious(1)).thenReturn(listOf(monetaryConverter1,monetaryConverter2))
 
-        var listMonetaryConverter = monetaryConverterService.findforidUsurious(1);
+        var listMonetaryConverter = monetaryConverterService.findforidUsurious("1");
         assert(listMonetaryConverter[0].idUsurious.equals("1"));
         assert(listMonetaryConverter[1].idUsurious.equals("1"));
 
@@ -93,7 +93,7 @@ internal class MonetaryConverterServiceTest {
         Mockito.`when`(mockMonetaryConverterRepository.findforidUsurious(1)).thenReturn(listOf())
 
         val exception: NotFoundException = assertThrows(NotFoundException::class.java) {
-            monetaryConverterService.findforidUsurious(7);
+            monetaryConverterService.findforidUsurious("7");
 
         }
         val actualMessage = exception.message

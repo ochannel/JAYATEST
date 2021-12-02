@@ -4,6 +4,7 @@ import com.jayatest.monetaryconverter.exception.NotFoundException
 import com.jayatest.monetaryconverter.model.ExchangeRatesApiResponse
 import com.jayatest.monetaryconverter.model.MonetaryConverter
 import com.jayatest.monetaryconverter.repository.MonetaryConverterRepository
+import com.jayatest.monetaryconverter.validation.IntegerValidation
 import com.jayatest.monetaryconverterapi.model.MonetaryConverterDTO
 import org.modelmapper.ModelMapper
 
@@ -55,14 +56,18 @@ class MonetaryConverterService(
 
     }
 
-    fun findforidUsurious(idUsurious:Int?): List<MonetaryConverterDTO>{
+    fun findforidUsurious(idUsurious:String?): List<MonetaryConverterDTO>{
+
+
+        IntegerValidation.validate(idUsurious,"idUsurious")
+
         val turnsType = object : TypeToken<List<MonetaryConverterDTO>>() {}.type
 
-        val listMonetaryConverter =monetaryConverterRepository.findforidUsurious(idUsurious)
+        val listMonetaryConverter = monetaryConverterRepository.findforidUsurious(Integer.valueOf(idUsurious))
         if(listMonetaryConverter.isEmpty()){
-            throw NotFoundException("Não foi encontrado MonetaryConverter paro o usuário. ");
+            throw NotFoundException("Não foi encontrado MonetaryConverter para o usuário. ");
         }
-        return ModelMapper().map(monetaryConverterRepository.findforidUsurious(idUsurious), turnsType);
+        return ModelMapper().map(listMonetaryConverter, turnsType);
     }
 
 

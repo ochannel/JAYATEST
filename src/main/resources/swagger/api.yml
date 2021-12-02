@@ -69,8 +69,9 @@ paths:
         - in: path
           name: idUsurious
           schema:
-            type: integer
+            type: string
           required: true
+          example: 999999999
           description: Identificador do Usuário.
       responses:
         '200':
@@ -113,9 +114,9 @@ components:
         idUsurious:
           type: "string"
           description: Código do Usuário
-          example: "9999999999"
-          pattern: '[0-9]{1,10}'
-          x-pattern-message: "Deve conter apenas numeros e deve de 1 a 10 digitos."
+          example: "999999999"
+          pattern: '[0-9]{1,9}'
+          x-pattern-message: "Deve conter apenas numeros e deve de 1 a 9 digitos."
         origenCurrency:
           type: string
           description: "Moeda de origem"
