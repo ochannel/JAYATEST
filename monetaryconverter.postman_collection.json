@@ -20,12 +20,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/v1/monetaryconverter",
-					"protocol": "http",
+					"raw": "https://monetaryconverter.herokuapp.com/v1/monetaryconverter",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"monetaryconverter",
+						"herokuapp",
+						"com"
 					],
-					"port": "8080",
 					"path": [
 						"v1",
 						"monetaryconverter"
@@ -40,8 +41,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://monetaryconverter.herokuapp.com/v1/monetaryconverter/1",
-					"protocol": "https",
+					"raw": "http://monetaryconverter.herokuapp.com/v1/monetaryconverter/1",
+					"protocol": "http",
 					"host": [
 						"monetaryconverter",
 						"herokuapp",
@@ -62,8 +63,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://monetaryconverter.herokuapp.com/v1/monetaryconverter",
-					"protocol": "https",
+					"raw": "http://monetaryconverter.herokuapp.com/v1/monetaryconverter",
+					"protocol": "http",
 					"host": [
 						"monetaryconverter",
 						"herokuapp",

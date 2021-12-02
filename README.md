@@ -7,11 +7,10 @@
 Spring Boot ,API Restfull, Kotlin , OPEN API(SWAGGER),JUNIT,MOKITO e MONGODB.
 
 <b>Como testar online?</b>
-Para testar você pode baixar a collection MonetaryConverter  da url https://github.com/ochannel/JAYATEST/blob/master/monetaryconverter.postman_collection.json e importar no Postman
+Para testar você pode baixar a collection MonetaryConverter  da url https://github.com/ochannel/JAYATEST/blob/master/monetaryconverter.postman_collection.json e importar no Postman.Também pode testar pela documentação que está no link abaixo.
 
-<b>Como visualizar a documentação ?</b>
-Baixar de https://github.com/ochannel/JAYATEST/blob/master/src/main/resources/swagger/api.yml e abrir no Swagger editor.
-
+<b>Segue o link da documentação.</b>
+https://doc-monetaryconverter.herokuapp.com/
 
 <b>Como rodar local a aplicação?</b>
 Necessário a IDE Intellij e o GIT para baixar o projeto desse repositório, não é necessario instalar o mongodb porque o default aponta para o atlas(cloud).
